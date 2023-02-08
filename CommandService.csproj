@@ -27,4 +27,8 @@
         <Protobuf Include="Protos\platforms.proto" GrpcServices="Client" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="k8s" />
+    </ItemGroup>
+
 </Project>
