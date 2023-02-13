@@ -36,6 +36,8 @@ namespace CommandService.Data
                 {
                     repo.CreatePlatform(platform);
                 }
+
+                repo.SaveChanges();
             }
         }
     }
