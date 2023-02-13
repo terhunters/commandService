@@ -30,8 +30,13 @@ namespace CommandService.Data
         private static void SeedData(ICommandRepo repo, IEnumerable<Platform> returnAllPlatforms)
         {
             foreach (var platform in returnAllPlatforms)
+            {
+                Console.WriteLine($"Try add platform {platform.Name}");
                 if (!repo.ExternalPlatformExist(platform.Id))
+                {
                     repo.CreatePlatform(platform);
+                }
+            }
         }
     }
 }
