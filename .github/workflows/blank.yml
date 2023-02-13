@@ -35,14 +35,14 @@ jobs:
     needs: build
   
     steps:
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          global-json-file: global.json
       - name: Download a single artifact
         uses: actions/download-artifact@v3.0.2
         with:
           name: build-output
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          global-json-file: global.json
       - name: Test
         run: dotnet test --no-build --verbosity normal
   
