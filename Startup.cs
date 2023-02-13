@@ -2,6 +2,7 @@ using System;
 using CommandService.AsyncDataServices;
 using CommandService.Data;
 using CommandService.EventProcessing;
+using CommandService.SyncDataServices.Grpc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ namespace CommandService
         {
             services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
             services.AddScoped<ICommandRepo, CommandRepo>();
+
+            services.AddScoped<IPlatformDataClient, PlatformDataClient>();
 
             services.AddSingleton<IEventProcessor, EventProcessor>();
 
@@ -55,6 +58,8 @@ namespace CommandService
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            PrepDb.PrepDatabase(app);
         }
     }
 }
